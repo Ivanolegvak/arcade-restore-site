@@ -1,0 +1,50 @@
+:root {
+  --bg: #f6f1e7; --fg: #1d1b26; --muted: #5d5868; --card: #fffaf0; --line: #e2d9c6;
+  --accent: #d9482b; --banner: #fff1b8;
+  --p1: #f2a541; --p2: #f07b3f; --p3: #e84a5f; --p4: #6c5b7b; --p5: #4b7f8c; --p6: #2a4a5c; --p7: #1b2a38;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14131a; --fg: #ece8f2; --muted: #a59fb3; --card: #1d1b26; --line: #2f2b3a;
+    --accent: #ff7a59; --banner: #3a3214;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 17px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+.draft {
+  background: var(--banner); color: var(--fg); text-align: center; font-size: 14px;
+  padding: 8px 16px; border-bottom: 1px solid var(--line);
+}
+header { padding: 24px 0 8px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.logo { font: 700 18px/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .08em; text-decoration: none; color: var(--fg); }
+nav a { color: var(--muted); text-decoration: none; margin-left: 16px; font-size: 15px; }
+nav a:hover, a { color: var(--accent); }
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; padding: 32px 0 48px; }
+h1 { font-size: clamp(30px, 6vw, 44px); line-height: 1.1; margin: 0 0 16px; letter-spacing: -.01em; }
+.lede { color: var(--muted); font-size: 19px; margin: 0 0 24px; }
+.badge {
+  display: inline-block; padding: 10px 18px; border-radius: 10px; border: 1px dashed var(--line);
+  color: var(--muted); font-size: 15px;
+}
+.poster { width: 100%; height: auto; border-radius: 12px; background: var(--card); padding: 10px; border: 1px solid var(--line); }
+.poster .faded { opacity: .18; }
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 48px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+.card h2 { font-size: 17px; margin: 0 0 6px; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 14px; }
+footer a { color: var(--muted); }
+.legal h1 { font-size: 32px; margin-top: 24px; }
+.legal h2 { font-size: 20px; margin-top: 32px; }
+.legal table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.legal th, .legal td { text-align: left; vertical-align: top; padding: 8px; border-bottom: 1px solid var(--line); }
+.todo { background: var(--banner); padding: 0 4px; border-radius: 4px; }
+@media (max-width: 640px) {
+  .hero, .features { grid-template-columns: 1fr; }
+  .hero { padding-top: 16px; }
+  nav a { margin-left: 12px; }
+}
