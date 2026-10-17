@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Arcade Restore — playtest</title>
+<style>
+/* Layout: one full-height stage; the game canvas fills it, a start card sits on top until play. */
+:root {
+  --ink: #18161f;      /* game background, matches the level screen */
+  --panel: #2c2a38;    /* board backdrop */
+  --text: #f4ead2;     /* palette cream */
+  --muted: #a39fb5;
+  --accent: #f7d234;   /* palette yellow, the win-screen accent */
+  --display: "Press Start 2P", ui-monospace, Menlo, monospace;
+  --body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--ink); color: var(--text); font-family: var(--body); overflow: hidden; }
+#stage { position: relative; height: 100%; display: grid; place-items: center; }
+#canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; background: var(--ink); }
+#start {
+  position: absolute; inset: 0; display: grid; place-items: center; padding-inline: 16px;
+  background: var(--ink);
+}
+.card { display: grid; gap: 18px; justify-items: center; text-align: center; max-width: 22rem; }
+.logo { image-rendering: pixelated; width: 120px; height: 120px; }
+h1 { margin: 0; font-family: var(--display); font-size: 1.15rem; line-height: 1.6; color: var(--accent); text-wrap: balance; letter-spacing: 0.04em; }
+p { margin: 0; color: var(--muted); line-height: 1.5; font-size: 0.95rem; }
+button {
+  font: 600 1.05rem var(--body); color: var(--ink); background: var(--accent);
+  border: 0; border-radius: 12px; padding: 14px 40px; cursor: pointer; min-width: 12rem;
+}
+button:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+button[disabled] { opacity: 0.6; cursor: progress; }
+.bar { width: 14rem; height: 8px; background: var(--panel); border-radius: 4px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0%; background: var(--accent); transition: width 0.2s; }
+.note { font-size: 0.8rem; }
+#err { color: #ff8b7b; font-size: 0.85rem; white-space: pre-wrap; }
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+.note a { color: var(--text); }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;600&display=swap">
+</head>
+<body>
+<div id="stage">
+  <canvas id="canvas" tabindex="-1">Your browser does not support the canvas element.</canvas>
+  <div id="start">
+    <div class="card">
+      <canvas class="logo" id="logo" width="12" height="12" aria-hidden="true"></canvas>
+      <h1>Arcade Restore</h1>
+      <p>Tap a stack to send its ball to the dock. Balls break pixels of their color that they can reach. Restore the picture before the dock jams.</p>
+      <button id="play" type="button">Play</button>
+      <div class="bar" id="bar" hidden><i id="fill"></i></div>
+      <p class="note" id="note">Playtest build — thanks for testing! Feedback: <a href="mailto:insightops2@gmail.com">insightops2@gmail.com</a></p>
+      <p class="note">Progress is kept in this browser.</p>
+      <p id="err" hidden></p>
+    </div>
+  </div>
+</div>
+
+<script src="index.js"></script>
+<script>
+// Pixel heart logo in the colours of the Ukrainian flag: blue top, yellow bottom (Ivan, 2026-10-17).
+(function () {
+  const c = document.getElementById('logo').getContext('2d');
+  const rows = ['............', '..aa....aa..', '.aaaa..aaaa.', '.aaaaaaaaaa.', '.aaaaaaaaaa.',
+    '.hhhhhhhhhh.', '..hhhhhhhh..', '...hhhhhh...', '....hhhh....', '.....hh.....', '............', '............'];
+  const col = { a: '#0057b7', h: '#ffd700' };
+  rows.forEach((r, y) => [...r].forEach((ch, x) => { if (col[ch]) { c.fillStyle = col[ch]; c.fillRect(x, y, 1, 1); } }));
+})();
+
+// Published files: the wasm is gzip-compressed (artifact file size limit) and decompressed here.
+const FILES = { 'index.wasm': 'engine.gz.wasm', 'index.pck': 'game.pck.wasm' };
+const realFetch = window.fetch.bind(window);
+window.fetch = async function (input, init) {
+  const url = typeof input === 'string' ? input : input.url;
+  const name = url.split('/').pop().split('?')[0];
+  if (name === 'index.wasm') {
+    const resp = await realFetch(FILES[name], init);
+    if (!resp.ok) throw new Error('Could not load the game engine (' + resp.status + ').');
+    const stream = resp.body.pipeThrough(new DecompressionStream('gzip'));
+    return new Response(stream, { headers: { 'Content-Type': 'application/wasm' } });
+  }
+  if (name === 'index.pck') return realFetch(FILES[name], init);
+  return realFetch(input, init);
+};
+
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":2342788,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[]};
+const engine = new Engine(GODOT_CONFIG);
+
+const playBtn = document.getElementById('play');
+const bar = document.getElementById('bar');
+const fill = document.getElementById('fill');
+const err = document.getElementById('err');
+
+function fail(e) {
+  console.error(e);
+  err.textContent = 'The game could not start: ' + (e && e.message ? e.message : e) + '\nTry Chrome or Safari, or reload the page.';
+  err.hidden = false;
+  playBtn.disabled = false;
+  playBtn.textContent = 'Try again';
+}
+
+playBtn.addEventListener('click', () => {
+  const missing = Engine.getMissingFeatures({ threads: false });
+  if (missing.length) { fail(new Error('This browser lacks: ' + missing.join(', '))); return; }
+  playBtn.disabled = true;
+  playBtn.textContent = 'Loading…';
+  bar.hidden = false;
+  err.hidden = true;
+  engine.startGame({
+    onProgress: (current, total) => { if (total > 0) fill.style.width = Math.min(100, (current / total) * 100) + '%'; },
+  }).then(() => {
+    document.getElementById('start').remove();
+    document.getElementById('canvas').focus();
+  }, fail);
+});
+</script>
+</body>
+</html>
