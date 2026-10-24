@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Arcade Restore</title>
-<meta name="description" content="Privacy policy for the Arcade Restore mobile game for iPhone and iPad.">
+<meta name="description" content="Privacy policy for the Arcade Restore mobile game for iPhone, iPad and Android devices.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,8 +16,8 @@
 
   <main>
     <h1>Privacy Policy</h1>
-    <p><strong>Effective date:</strong> October 17, 2026<br>
-    <strong>Applies to:</strong> the Arcade Restore mobile game for iPhone and iPad ("the game").<br>
+    <p><strong>Effective date:</strong> October 25, 2026<br>
+    <strong>Applies to:</strong> the Arcade Restore mobile game for iPhone, iPad and Android devices ("the game").<br>
     <strong>Publisher:</strong> Ivan Vakulenko, an individual developer ("we", "us").<br>
     <strong>Contact:</strong> <a href="mailto:insightops2@gmail.com">insightops2@gmail.com</a></p>
 
@@ -25,9 +25,9 @@
     <ul>
       <li>There are <strong>no accounts</strong>. We never ask for your name, email address, phone number, contacts, photos or precise location. The game has no chat and no way to post or share content.</li>
       <li>Your progress is <strong>saved only on your device</strong>. We do not run our own servers for the game.</li>
-      <li>The game is free to play. You can optionally buy coins or an auto-renewable <strong>Premium</strong> subscription through Apple. <strong>Apple processes all payments; we never see your card or billing details.</strong></li>
-      <li>To understand how the game is played and to measure our advertising, we plan to use a small number of partners (analytics, attribution and, if offered, optional rewarded ads). These partners are not yet integrated. Once they are, they receive the device and gameplay data described below.</li>
-      <li>We only access your device's advertising identifier (IDFA) if you allow it in Apple's "Allow tracking" prompt (App Tracking Transparency). Saying no does not change the game.</li>
+      <li>The game is free to play. You can optionally buy coins or an auto-renewable <strong>Premium</strong> subscription through Apple's App Store (iPhone, iPad) or Google Play (Android). <strong>Apple or Google processes all payments; we never see your card or billing details.</strong> The game shows no ads.</li>
+      <li>To understand how the game is played, we use <strong>GameAnalytics</strong>, but <strong>only after you agree</strong> in the game (you can change your answer at any time in Settings &gt; Privacy). It receives gameplay events, diagnostics and purchase events tied to a random identifier the game creates on your device, as described below. To measure our advertising we plan to add an attribution partner and, if offered, optional rewarded ads; these partners are not yet integrated.</li>
+      <li>The current version of the game does not access your device's advertising identifier (IDFA) and does not show Apple's "Allow tracking" prompt. If a future partner needs it, we will only access the IDFA if you allow it in that prompt (App Tracking Transparency). Saying no does not change the game. On Android, the game does not access the Android advertising ID, the App Set ID or the Android ID.</li>
     </ul>
 
     <h2>2. Data stored on your device only</h2>
@@ -35,7 +35,8 @@
       <thead><tr><th>What</th><th>Why</th><th>Leaves your device?</th></tr></thead>
       <tbody>
         <tr><td>Game save: level progress, coins, boosters, stars, best times, unlocked and equipped cosmetic skins, settings (sound, music, haptics, screen shake, hints, colour symbols, CRT effect), one-time flags (for example, that an offer was already shown)</td><td>To keep your progress and preferences</td><td>No</td></tr>
-        <tr><td>Local analytics counters: session number and install date (no identifiers)</td><td>To number sessions for the analytics events in section 3</td><td>No (only the numbers inside events, once analytics is integrated)</td></tr>
+        <tr><td>Local analytics counters: session number and install date (no identifiers)</td><td>To number sessions for the analytics events in section 3</td><td>Only as numbers inside the analytics events in section 3, and only after you agree</td></tr>
+        <tr><td>Analytics identifier and unsent events: a random identifier the game creates after you agree to analytics, and a queue of analytics events not yet sent</td><td>To send the analytics events in section 3 reliably</td><td>Yes, to GameAnalytics only, and only after you agree. If you withdraw consent, unsent events are deleted</td></tr>
       </tbody>
     </table>
     <p>Deleting the game from your device deletes this data. Because it never reaches us, we cannot restore it for you.</p>
@@ -45,19 +46,20 @@
       <thead><tr><th>Partner</th><th>Status</th><th>Data</th><th>Purpose</th></tr></thead>
       <tbody>
         <tr><td><strong>Apple</strong> (App Store, StoreKit)</td><td>Used for in-app purchases</td><td>Purchase and subscription records: product, transaction ID, date, price, renewal status. Payment details stay with Apple.</td><td>Process purchases and subscriptions, deliver coins and Premium, "Restore purchases"</td></tr>
-        <tr><td><strong>GameAnalytics</strong></td><td><em>Planned, not yet integrated</em></td><td>Gameplay events (session start, level start/complete/fail/quit, stars, score, play time, booster and continue use, coins earned/spent, shop and offer views, purchases with product and price, settings toggles, performance fallbacks), session number, days since install, app version, device model, OS version, language, an app-specific device identifier (IDFV), IP address (used to derive country; not stored as precise location). IDFA only with your App Tracking Transparency permission.</td><td>Improve the game: difficulty tuning, finding where players get stuck, crashes and performance</td></tr>
-        <tr><td><strong>Tenjin</strong> (attribution)</td><td><em>Planned, not yet integrated</em></td><td>Install and purchase events, IDFV, IP address, device model, OS version, and IDFA only with your App Tracking Transparency permission; Apple's privacy-preserving SKAdNetwork / AdAttributionKit signals</td><td>Measure which ad campaigns brought installs and purchases; fraud prevention</td></tr>
-        <tr><td><strong>AppLovin MAX</strong> and the ad networks it works with</td><td><em>Planned, not yet integrated; only if optional rewarded ads are offered</em></td><td>Device model, OS version, language, IP address (approximate location), IDFV, ad interactions (which ad was shown, whether the reward was granted); IDFA only with your App Tracking Transparency permission</td><td>Show optional rewarded videos that you choose to watch (for example, for a continue or bonus coins), measure them, cap their frequency, prevent fraud</td></tr>
+        <tr><td><strong>Google</strong> (Google Play, Google Play Billing)</td><td>Used for in-app purchases on Android</td><td>Purchase and subscription records: product, order ID, purchase token, date, price, renewal status. Payment details stay with Google.</td><td>Process purchases and subscriptions, deliver coins and Premium, restore Premium and one-time items on a new device</td></tr>
+        <tr><td><strong>GameAnalytics</strong></td><td>Used, only after you agree in the game (change in Settings &gt; Privacy)</td><td>Gameplay events (session start, level start/complete/fail/quit, stars, score, play time, booster and continue use, coins earned/spent, shop and offer views, purchases with product and price, settings toggles, performance fallbacks), diagnostics (error reports with file paths removed), purchase events (product and price; no receipt or payment details), session number, days since install, app version, device model, OS version, language, a random identifier the game creates on your device (not your advertising ID, IDFV or Android ID), IP address (used to derive country; not stored as precise location). The game does not send the IDFA, IDFV, the Android advertising ID or the App Set ID.</td><td>Improve the game: difficulty tuning, finding where players get stuck, errors and performance</td></tr>
+        <tr><td><strong>Tenjin</strong> (attribution)</td><td><em>Planned, not yet integrated</em></td><td>Install and purchase events, IDFV, IP address, device model, OS version, and IDFA only with your App Tracking Transparency permission; Apple's privacy-preserving SKAdNetwork / AdAttributionKit signals. On Android: the Android advertising ID only if this partner is integrated and the policy is updated first.</td><td>Measure which ad campaigns brought installs and purchases; fraud prevention</td></tr>
+        <tr><td><strong>AppLovin MAX</strong> and the ad networks it works with</td><td><em>Planned, not yet integrated; only if optional rewarded ads are offered</em></td><td>Device model, OS version, language, IP address (approximate location), IDFV, ad interactions (which ad was shown, whether the reward was granted); IDFA only with your App Tracking Transparency permission. On Android: the Android advertising ID only if this partner is integrated and the policy is updated first.</td><td>Show optional rewarded videos that you choose to watch (for example, for a continue or bonus coins), measure them, cap their frequency, prevent fraud</td></tr>
       </tbody>
     </table>
     <p>Our analytics events contain <strong>no free text and no personal information</strong> such as names or email addresses. The list of events is fixed by us and does not include anything you type.</p>
-    <p>We do not sell personal information for money. With your App Tracking Transparency permission, the IDFA may be shared with our attribution and ad partners to measure and personalise advertising, which some laws call "sharing" (see section 7).</p>
-    <p>Where the law requires it, the game will ask for your consent before analytics and personalised advertising start.</p>
+    <p>We do not sell personal information for money. Once attribution or ad partners are integrated, and only with your App Tracking Transparency permission, the IDFA may be shared with our attribution and ad partners to measure and personalise advertising, which some laws call "sharing" (see section 7).</p>
+    <p>The game asks everyone for consent before analytics starts; nothing is sent to GameAnalytics until you agree. You can change your answer at any time in Settings &gt; Privacy. Where the law requires it, the game will also ask for your consent before personalised advertising starts, if ad partners are ever integrated.</p>
 
     <h2>4. Legal bases (EEA, UK, Switzerland)</h2>
     <ul>
       <li><strong>Contract:</strong> processing purchases and delivering what you bought.</li>
-      <li><strong>Consent:</strong> tracking with the IDFA (Apple's App Tracking Transparency prompt) and, where required, analytics and personalised ads. You can withdraw consent at any time (section 6); this does not affect processing that happened before.</li>
+      <li><strong>Consent:</strong> analytics (GameAnalytics); tracking with the IDFA (Apple's App Tracking Transparency prompt) and, where required, personalised ads, if those partners are integrated. You can withdraw consent at any time (section 6); this does not affect processing that happened before.</li>
       <li><strong>Legitimate interests:</strong> non-personalised measurement of the game's performance, security and fraud prevention, provided your interests do not override ours.</li>
     </ul>
 
@@ -65,14 +67,16 @@
     <ul>
       <li><strong>On your device:</strong> until you delete the game.</li>
       <li><strong>Partners:</strong> where we control the setting, analytics and attribution data held by our partners is kept for up to 24 months and then deleted or aggregated. Aggregated statistics that cannot identify you may be kept longer.</li>
-      <li><strong>Purchases:</strong> Apple keeps purchase records under its own policy; we keep only what the partners above hold.</li>
+      <li><strong>Purchases:</strong> Apple and Google keep purchase records under their own policies; we keep only what the partners above hold.</li>
     </ul>
 
     <h2>6. Your choices</h2>
     <ul>
-      <li><strong>Tracking:</strong> allow or deny tracking for the game in iOS Settings &gt; Privacy &amp; Security &gt; Tracking. If you deny it, partners cannot access the IDFA.</li>
+      <li><strong>Analytics:</strong> the game asks once whether you agree to analytics. You can change your answer at any time in the game under Settings &gt; Privacy. If you say no or withdraw consent, no analytics events are sent and unsent events are deleted from your device.</li>
+      <li><strong>Tracking:</strong> on iPhone/iPad, allow or deny tracking for the game in iOS Settings &gt; Privacy &amp; Security &gt; Tracking. If you deny it, partners cannot access the IDFA.</li>
       <li><strong>Personalised ads (iOS):</strong> iOS Settings &gt; Privacy &amp; Security &gt; Apple Advertising controls Apple's own ads; partners' ads follow your App Tracking Transparency choice.</li>
-      <li><strong>Subscriptions:</strong> manage or cancel in iOS Settings &gt; your name &gt; Subscriptions.</li>
+      <li><strong>Subscriptions:</strong> on iPhone/iPad, manage or cancel in iOS Settings &gt; your name &gt; Subscriptions; on Android, in the Google Play app &gt; your profile icon &gt; Payments &amp; subscriptions &gt; Subscriptions.</li>
+      <li><strong>Android advertising ID:</strong> the game does not use it. You can still reset or delete it in Android Settings &gt; Privacy (or Google) &gt; Ads.</li>
       <li><strong>Delete local data:</strong> delete the game from your device.</li>
     </ul>
 
@@ -81,7 +85,7 @@
     <p>We do not hold accounts, so we cannot look you up by name or email. To exercise a right, email <a href="mailto:insightops2@gmail.com">insightops2@gmail.com</a>; we will help you, including by forwarding a deletion request to our partners with the device identifiers they need. We answer within the period the law sets (usually one month under the GDPR, 45 days under the CCPA). We will not treat you differently for exercising your rights. You may also complain to your local data protection authority.</p>
 
     <h2>8. Children</h2>
-    <p>The game is <strong>not directed at children under 13</strong> (or the minimum age of digital consent in your country) and is not listed in the App Store Kids category. We do not knowingly collect personal information from children. If you believe a child has provided personal information through the game, contact <a href="mailto:insightops2@gmail.com">insightops2@gmail.com</a> and we will help delete it. If ad partners are integrated, we will configure them not to treat users as child-directed, and to use non-personalised ads where a user is known to be under the applicable age.</p>
+    <p>The game is <strong>not directed at children under 13</strong> (or the minimum age of digital consent in your country) and is not listed in the App Store Kids category or in Google Play's family programmes (Teacher Approved, Families). We do not knowingly collect personal information from children. If you believe a child has provided personal information through the game, contact <a href="mailto:insightops2@gmail.com">insightops2@gmail.com</a> and we will help delete it. If ad partners are integrated, we will configure them not to treat users as child-directed, and to use non-personalised ads where a user is known to be under the applicable age.</p>
 
     <h2>9. International transfers</h2>
     <p>Our partners may process data outside your country, including in the United States. Where the law requires it, transfers rely on safeguards such as the European Commission's Standard Contractual Clauses or the EU-US / UK-US Data Privacy Framework, as described in each partner's policy.</p>
@@ -92,7 +96,8 @@
     <h2>11. Partners' privacy policies</h2>
     <ul>
       <li>Apple: <a href="https://www.apple.com/legal/privacy/">apple.com/legal/privacy</a></li>
-      <li>GameAnalytics (planned): <a href="https://www.gameanalytics.com/trust/privacy-notice">gameanalytics.com/trust/privacy-notice</a></li>
+      <li>Google: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> · Google Play: <a href="https://play.google.com/about/play-terms/">play.google.com/about/play-terms</a></li>
+      <li>GameAnalytics: <a href="https://www.gameanalytics.com/trust/privacy-notice">gameanalytics.com/trust/privacy-notice</a></li>
       <li>Tenjin (planned): <a href="https://tenjin.com/privacy/">tenjin.com/privacy</a></li>
       <li>AppLovin (planned): <a href="https://www.applovin.com/privacy/">applovin.com/privacy</a></li>
     </ul>
